@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Beat Maker</title>
+</head>
+<body>
+    <div class="sequencer">
+
+        <!-- First Beat -->
+        <div class="kick-track">
+            <div class="controls">
+                <h1>Kick</h1>
+                <button data-track="0" class="mute kick-volume">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </button>
+                <!-- Choose any sound from the assets folder -->
+                <select name="kick-select" id="kick-select">
+                    <option value="./assets/kick-classic.wav">Classic Kick</option>
+                    <option value="./assets/kick-808.wav">808 Kick</option>
+                    <option value="./assets/kick-heavy.wav">Kick Heavy</option>
+                </select>
+            </div>
+            <div class="kick">
+                <div class="pad kick-pad beat0"></div>
+                <div class="pad kick-pad beat1"></div>
+                <div class="pad kick-pad beat2"></div>
+                <div class="pad kick-pad beat3"></div>
+                <div class="pad kick-pad beat4"></div>
+                <div class="pad kick-pad beat5"></div>
+                <div class="pad kick-pad beat6"></div>
+                <div class="pad kick-pad beat7"></div>
+            </div>
+        </div>
+
+<!-- --------------------------------------------------------------------------- -->
+
+        <!-- Second Beat -->
+        <div class="snare-track">
+            <div class="controls">
+                <h1>Snare</h1>
+                <button data-track="1" class="mute kick-volume">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </button>
+                <!-- Choose any sound from the assets folder -->
+                <select name="snare-select" id="snare-select">
+                    <option value="./assets/snare-acoustic01.wav">Classic Snare</option>
+                    <option value="./assets/snare-808.wav">808 Snare</option>
+                    <option value="./assets/snare-vinyl02.wav">Snare Vinyl</option>
+                </select>
+            </div>
+            <div class="snare">
+                <div class="pad snare-pad beat0"></div>
+                <div class="pad snare-pad beat1"></div>
+                <div class="pad snare-pad beat2"></div>
+                <div class="pad snare-pad beat3"></div>
+                <div class="pad snare-pad beat4"></div>
+                <div class="pad snare-pad beat5"></div>
+                <div class="pad snare-pad beat6"></div>
+                <div class="pad snare-pad beat7"></div>
+            </div>
+        </div>
+
+<!-- --------------------------------------------------------------------------- -->
+
+        <!-- Third Beat -->
+        <div class="hihat-track">
+            <div class="controls">
+                <h1>Hihat</h1>
+                <button data-track="1" class="mute hihat-volume">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </button>
+                <!-- Choose any sound from the assets folder -->
+                <select name="hihat-select" id="hihat-select">
+                    <option value="./assets/hihat-acoustic01.wav">Hihat Acoustic</option>
+                    <option value="./assets/hihat-808.wav">808 Hihat</option>
+                </select>
+            </div>
+            <div class="hihat">
+                <div class="pad hihat-pad beat0"></div>
+                <div class="pad hihat-pad beat1"></div>
+                <div class="pad hihat-pad beat2"></div>
+                <div class="pad hihat-pad beat3"></div>
+                <div class="pad hihat-pad beat4"></div>
+                <div class="pad hihat-pad beat5"></div>
+                <div class="pad hihat-pad beat6"></div>
+                <div class="pad hihat-pad beat7"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
