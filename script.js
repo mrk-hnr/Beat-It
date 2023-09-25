@@ -1,12 +1,20 @@
 class Drumkit {
     constructor() {
+        this.index = 0
+        this.bpm = 150
+        this.isPlaying = null
+
         this.pads = document.querySelectorAll(".pad")
         this.playButton = document.querySelector(".play")
         this.kickAudio = document.querySelector(".kick-sound")
         this.snareAudio = document.querySelector(".snare-sound")
         this.hihatAudio = document.querySelector(".hihat-sound")
-        this.index = 0
-        this.bpm = 150
+
+        this.currentKick = "./assets/kick-deep.wav"
+        this.currentSnare = "./assets/snare-brute.wav"
+        this.currentHihat = "./assets/hihat-electro.wav"
+        this.selects = document.querySelectorAll("select")
+
     }
 
     activePad() {
@@ -36,22 +44,57 @@ class Drumkit {
                     this.hihatAudio.play()
                 }
             }
-            
-
-
         })
         this.index++
     }
 
     start() {
         const interval = (60/this.bpm) * 1000
-        setInterval(() => {
+
+        // PERFORMS CHECK IF PLAYING
+        if (!this.isPlaying) { // Initial value is null = if "playing"
+        this.isPlaying = setInterval(() => {
             this.repeat()
         }, interval)
+    } else {
+        clearInterval(this.isPlaying)
+        this.isPlaying = null
+    }
+    }
+    // CHANGE THE TEXT IN BUTTON TO PLAY/STOP
+    updateButtion() {
+        if (!this.isPlaying) {
+            this.playButton.innerText = "Stop"
+            this.playButton.classList.add("active")
+        } else {
+            this.playButton.innerText = "Play"
+            this.playButton.classList.remove("active")
+        }
+    }
+    changeSound(event) {
+         const selectionName = event.target.name
+         const selectionValue = event.target.value //source from the directory
+         console.log(selectionName)
+         console.log(selectionValue)
+
+         switch(selectionName) {
+            case "kick-select":
+                this.kickAudio.src = selectionValue
+                break;
+            case "snare-select":
+                this.snareAudio.src = selectionValue
+                break;
+            case "hihat-select":
+                this.hihatAudio.src = selectionValue
+                break;
+         }
     }
 }
 
 const drumKit = new Drumkit()
+
+
+// EVENT LISTENERS
 
 drumKit.pads.forEach(pad => {
     pad.addEventListener("click", drumKit.activePad)
@@ -61,5 +104,12 @@ drumKit.pads.forEach(pad => {
 })
 
 drumKit.playButton.addEventListener("click", () => {
+    drumKit.updateButtion()
     drumKit.start()
 })
+
+drumKit.selects.forEach(select => {
+    select.addEventListener("change", function(event) {
+        drumKit.changeSound(event)
+    })
+}) 
