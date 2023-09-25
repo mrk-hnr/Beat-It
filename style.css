@@ -100,3 +100,13 @@ select {
    padding: 1rem;
    font-size: 1rem;
 }
+
+/* ANIMATION */
+@keyframes playTrack {
+    from {
+        transform: scale(1)
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
