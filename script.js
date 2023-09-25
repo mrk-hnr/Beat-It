@@ -15,11 +15,17 @@ class Drumkit {
         this.currentHihat = "./assets/hihat-electro.wav"
         this.selects = document.querySelectorAll("select")
 
+        this.muteButton = document.querySelectorAll(".mute")
+
     }
+
+    // ---------------------------------------------
 
     activePad() {
         this.classList.toggle("active")
     }
+
+    // ---------------------------------------------
 
     repeat() {
         let step = this.index % 8
@@ -48,6 +54,8 @@ class Drumkit {
         this.index++
     }
 
+    // ---------------------------------------------
+
     start() {
         const interval = (60/this.bpm) * 1000
 
@@ -60,7 +68,10 @@ class Drumkit {
         clearInterval(this.isPlaying)
         this.isPlaying = null
     }
-    }
+}
+
+    // ---------------------------------------------
+
     // CHANGE THE TEXT IN BUTTON TO PLAY/STOP
     updateButtion() {
         if (!this.isPlaying) {
@@ -71,6 +82,9 @@ class Drumkit {
             this.playButton.classList.remove("active")
         }
     }
+
+    // ---------------------------------------------
+
     changeSound(event) {
          const selectionName = event.target.name
          const selectionValue = event.target.value //source from the directory
@@ -89,6 +103,41 @@ class Drumkit {
                 break;
          }
     }
+
+    // ---------------------------------------------
+
+    mute(event) {
+        const muteIndex = event.target.getAttribute("data-track")
+        event.target.classList.toggle("active")
+
+        if (event.target.classList.contains("active")) {
+            switch(muteIndex) {
+                case "0":
+                    this.kickAudio.volume = 0
+                    break;
+                case "1":
+                    this.snareAudio.volume = 0
+                    break;
+                case "2":
+                    this.hihatAudio.volume = 0
+                    break;
+            }
+        } else {
+            switch(muteIndex) {
+                case "0":
+                    this.kickAudio.volume = 1
+                    break;
+                case "1":
+                    this.snareAudio.volume = 1 
+                    break;
+                case "2":
+                    this.hihatAudio.volume = 1
+                    break;
+            }
+        }
+    }
+
+
 }
 
 const drumKit = new Drumkit()
@@ -113,3 +162,9 @@ drumKit.selects.forEach(select => {
         drumKit.changeSound(event)
     })
 }) 
+
+drumKit.muteButton.forEach(button => {
+    button.addEventListener("click", function(event) {
+        drumKit.mute(event)
+    })
+})
